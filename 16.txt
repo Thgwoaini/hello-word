@@ -1,0 +1,92 @@
+前情回顾
+
+1. 视图
+   视图作用 : 简化高频的复杂查询,提高数据安全,简化结构
+
+   create [or replace] view [view_name] as [select..]
+   drop view [if exists] [view]
+
+2. 函数和存储过程
+
+   函数: 有返回值   参数只有输入参数  多用于查找具体值
+
+   存储过程: 没有返回值,参数分为in out inout,更类似语句集
+
+   delimiter [符号]
+
+   create function [func](id int,..)
+   returns [return_type]
+   begin
+     语句...
+     return ...;
+   end
+
+   create procedure [proc](in id int,..)
+   begin
+     语句...
+   end
+
+3. 事务控制
+
+   原子性  一致性  隔离性   持久性
+
+   begin;
+   事务过程
+   commit;  提交事务
+   rollback; 事务回滚
+
+   隔离级别: 读未提交  读已提交 可重复读  串行化
+
+4.  数据库优化
+
+    1. 范式
+
+    2. 引擎  innodb   myisam
+       create table [tb](...)engine=MyISAM;
+       alter table [tb] engine=MyISAM
+
+
+练习1: 基于interest表,使用input输入一个学生的姓名,
+获取该学生的姓名,爱好,价格信息.
+
+练习2: 有若干个学生信息如下,将这些学生信息插入到cls表
+      [('Dave',17,'m',81),
+       ('Ala',18,'w',84),
+       ('Eva',19,'w',91)]
+
+练习3: 在dict数据库中建立words表存储单词
+        id   word  mean  三个字段
+
+        create table words (
+        id int primary key auto_increment,
+        word char(28),
+        mean varchar(1024),
+        index(word));
+
+      将dict.txt文件中所有单词存入这个数据表
+      注意后续操作为频繁的查询单词
+
+文件存储
+
+   1. 存储文件路径  "/home/tarena/xxx"
+
+       优点: 占数据库空间小
+       缺点: 容易丢失
+
+   2. 存储文件本身 (blob)
+
+       优点 : 数据库在文件就在
+       缺点 : 数据库提取存储文件速度慢
+
+
+
+
+
+
+
+
+
+
+
+
+
